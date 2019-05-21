@@ -6,10 +6,18 @@ env:
  - IMAGE_NAME=529455930136.dkr.ecr.us-east-2.amazonaws.com/isentest
 services:
   - docker
+  
+before_script:
+  - mkdir -p $HOME/bin
+  - wget https://bintray.com/jeremy-long/owasp/download_file?file_path=dependency-check-5.0.0-M3-release.zip -O $HOME/bin/dc.zip
+  - cd $HOME/bin/ && unzip dc.zip
+  - cd -
 
 script:
   - echo 'Use Docker!'
   - sonar-scanner
+  - npm install
+  - $HOME/bin/dependency-check/bin/dependency-check.sh --project juice-shop -s . 
   
 addons:
   sonarcloud:
