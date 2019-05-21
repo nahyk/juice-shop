@@ -9,6 +9,13 @@ services:
 
 script:
   - echo 'Use Docker!'
+  - sonar-scanner
+  
+addons:
+  sonarcloud:
+    organization: "nahyk-github" # the key of the org you chose at step #3
+    token:
+      secure: "$SONAR_TOKEN" # encrypted value of your token
 
 after_success:
   - pip install --user awscli
