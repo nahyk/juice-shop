@@ -3,7 +3,7 @@ node_js:
   - 11
 
 env:
- - IMAGE_NAME=868894423383.dkr.ecr.eu-west-1.amazonaws.com/juice-shop:1.0-$TRAVIS_BUILD_NUMBER
+ - IMAGE_NAME=529455930136.dkr.ecr.us-east-2.amazonaws.com/isentest
 services:
   - docker
 
