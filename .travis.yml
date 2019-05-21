@@ -12,8 +12,8 @@ script:
 
 after_success:
   - pip install --user awscli
-  - eval $(aws ecr get-login --region eu-west-1 --no-include-email)
+  - eval $(aws ecr get-login --region us-east-2 --no-include-email)
   - docker build -t $IMAGE_NAME .
   - docker push $IMAGE_NAME
-  - aws cloudformation deploy --template-file ./ecs-task.yaml --stack-name ecs-deployment --region eu-west-1 --parameter-override ImageName=$IMAGE_NAME
-  - aws cloudformation update-stack --template-body file://./ecs-task.yaml --stack-name ecs-deployment --region eu-west-1 --parameters "ParameterKey=ImageName,ParameterValue=$IMAGE_NAME"
+  - aws cloudformation deploy --template-file ./ecs-task.yaml --stack-name ecs-deployment --region us-east-2 --parameter-override ImageName=$IMAGE_NAME
+  - aws cloudformation update-stack --template-body file://./ecs-task.yaml --stack-name ecs-deployment --region us-east-2 --parameters "ParameterKey=ImageName,ParameterValue=$IMAGE_NAME"
